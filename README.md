@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BlogPessoalUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
@@ -25,3 +26,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+=======
+# blogPessoalUI
+>>>>>>> d4605017e131e87c351d1a7055d6e9178c29d7e3
