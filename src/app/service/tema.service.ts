@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Tema } from '../model/Tema';
-import { Usuario } from '../model/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +16,25 @@ export class TemaService {
   }
 
 
- 
-
   getAllTema(): Observable<Tema[]> {
     return this.http.get<Tema[]>('https://blogpessoalapiarcangeloar.herokuapp.com/tema', this.token)
   }
 
+  getByIdTema(id: number): Observable<Tema> {
+    return this.http.get<Tema>(`https://blogpessoalapiarcangeloar.herokuapp.com/tema/${id}`, this.token)
+  }
+
   postTema(tema: Tema): Observable<Tema> {
     return this.http.post<Tema>('https://blogpessoalapiarcangeloar.herokuapp.com/tema', tema, this.token)
+  }
+
+  putTema(tema: Tema): Observable<Tema> {
+    return this.http.put<Tema>('https://blogpessoalapiarcangeloar.herokuapp.com/tema', tema, this.token)
+  }
+
+  deleteTema(id: number) {
+    console.log(this.token)
+    return this.http.delete(`https://blogpessoalapiarcangeloar.herokuapp.com/tema/${id}`, this.token)
   }
 
 }
