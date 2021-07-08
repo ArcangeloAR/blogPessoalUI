@@ -16,7 +16,7 @@ export class TemaService {
   }
 
 
-  getAllTema(): Observable<Tema[]> {
+  getAllTemas(): Observable<Tema[]> {
     return this.http.get<Tema[]>('https://blogpessoalapiarcangeloar.herokuapp.com/tema', this.token)
   }
 
