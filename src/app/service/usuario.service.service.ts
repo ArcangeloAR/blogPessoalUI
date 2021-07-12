@@ -17,7 +17,13 @@ export class UsuarioService {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
 
-  getByIdUser(id_usuario: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`https://blogpessoalapiarcangeloar.herokuapp.com/usuarios/${id_usuario}`, this.token)
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token)
+    }
+  }
+
+  getByIdUser(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`http://localhost:8080/usuarios/${id}`, this.token)
   }
 }

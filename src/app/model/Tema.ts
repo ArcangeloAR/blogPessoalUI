@@ -1,7 +1,7 @@
 import { Postagem } from "./Postagem"
 
 export class Tema {
-    public idTema: number
-    public descricaoTema: string
+    public id: number
+    public descricao: string
     public postagem: Postagem[]
 }

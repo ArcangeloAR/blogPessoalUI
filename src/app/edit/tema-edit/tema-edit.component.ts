@@ -27,6 +27,8 @@ export class TemaEditComponent implements OnInit {
 
     let idTema = this.route.snapshot.params['id']
     this.findByIdTema(idTema)
+
+    this.temaService.refreshToken()
   }
 
 

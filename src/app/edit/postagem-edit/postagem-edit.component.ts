@@ -35,14 +35,16 @@ export class PostagemEditComponent implements OnInit {
       this.router.navigate(['/entrar'])
     }
 
-    let idDaPostagem = this.route.snapshot.params['id_postagem']
-    this.findByIdPostagem(idDaPostagem)
+    let id = this.route.snapshot.params['id']
+    this.findByIdPostagem(id)
     this.findAllTemas()
+
+    this.postagemService.refreshToken()
 
   }
 
-  findByIdPostagem(idDaPostagem: number) {
-    this.postagemService.getByIdPostagem(idDaPostagem).subscribe((resp: Postagem) => {
+  findByIdPostagem(id: number) {
+    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem) => {
       this.postagem = resp
     })
   }
@@ -60,8 +62,8 @@ export class PostagemEditComponent implements OnInit {
   }
 
   atualizar() {
-    this.tema.idTema = this.idDoTema
-    this.postagem.novoTema = this.tema
+    this.tema.id = this.idDoTema
+    this.postagem.tema = this.tema
 
     this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem)=> {
       this.postagem = resp

@@ -18,12 +18,18 @@ export class AuthService {
     headers: new HttpHeaders().set('Authorization', environment.token)
   }
 
-  entrar(userLogin: UserLogin): Observable<UserLogin> {
-    return this.http.post<UserLogin>('https://blogpessoalapiarcangeloar.herokuapp.com/usuarios/entrar', userLogin)
+  refreshToken() {
+    this.token = {
+      headers: new HttpHeaders().set('Authorization', environment.token)
+    }
+  }
+
+  entrar(user: UserLogin): Observable<UserLogin> {
+    return this.http.post<UserLogin>('http://localhost:8080/usuarios/entrar', user)
   }
 
   cadastrar(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>('https://blogpessoalapiarcangeloar.herokuapp.com/usuarios/cadastrar', usuario)
+    return this.http.post<Usuario>('http://localhost:8080/usuarios/cadastrar', usuario)
   }
 
   logado() {

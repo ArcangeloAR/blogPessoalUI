@@ -35,13 +35,18 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
 
+    window.scroll(0, 0)
+
     if (environment.token == '') {
       // alert('Sua seção expirou. Por favor, faça login novamente.')
       this.router.navigate(['/entrar'])
     }
 
     this.getAllTemas()
+    console.log(this.postagem)
     this.getAllPostagens()
+
+    this.temaService.refreshToken()
 
   }
 
@@ -70,18 +75,16 @@ export class InicioComponent implements OnInit {
   }
 
   publicar() {
+    this.tema.id = this.idDoTema
+    this.postagem.tema = this.tema
+    
+    this.user.id = this.idDoUsuario
+    this.user.nome = environment.nome
+    this.postagem.usuario = this.user
 
-    this.tema.idTema = this.idDoTema
-    this.postagem.novoTema = this.tema
-    
-    console.log(this.postagem)
-    
-    this.user.idUsuario = this.idDoUsuario
-    this.postagem.novoUsuario = this.user
-    
-    console.log(this.postagem)
     this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
+
       alert('Postagem realizada com sucesso!')
       this.postagem = new Postagem()
       this.getAllPostagens()

@@ -30,14 +30,16 @@ export class PostagemDeleteComponent implements OnInit {
       this.router.navigate(['/entrar'])
     }
 
-    let idDoPost = this.route.snapshot.params['id_postagem']
-    this.findByIdPostagem(idDoPost)
+    this.idDoPost = this.route.snapshot.params['id']
+    this.findByIdPostagem(this.idDoPost)
   
+    this.postagemService.refreshToken()
   }
 
-  findByIdPostagem(idDoPost: number) {
-    this.postagemService.getByIdPostagem(idDoPost).subscribe((resp: Postagem) => {
+  findByIdPostagem(id: number) {
+    this.postagemService.getByIdPostagem(id).subscribe((resp: Postagem) => {
       this.postagem = resp
+      console.log(this.postagem)
     })
   }
 
