@@ -2,3 +2,10 @@
     width: 500px;
     height: 500px;
 }
+
+.bg-img {
+    background-image: url('https://i.imgur.com/KWHgfyy.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
