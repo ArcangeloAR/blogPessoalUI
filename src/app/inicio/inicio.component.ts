@@ -8,6 +8,7 @@ import { PostagemService } from '../service/postagem.service';
 import { TemaService } from '../service/tema.service';
 import { UsuarioService } from '../service/usuario.service.service';
 import { AlertasService } from '../service/alertas.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Component({
   selector: 'app-inicio',
@@ -18,10 +19,12 @@ export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
   listaPostagens: Postagem[]
+  tituloPost: string
 
   tema: Tema = new Tema()
   listaTemas: Tema[]
   idDoTema: number
+  descricaoTema: string
 
   user: Usuario = new Usuario()
   idDoUsuario = environment.id
@@ -73,15 +76,35 @@ export class InicioComponent implements OnInit {
   }
 
   findByIdUser() {
-    this.usuarioService.getByIdUser(this.idDoUsuario).subscribe((resp: Usuario)=> {
+    this.usuarioService.getByIdUser(this.idDoUsuario).subscribe((resp: Usuario) => {
       this.user = resp
     })
+  }
+
+  findByTituloPostagem() {
+    if(this.tituloPost == '') {
+      this.getAllPostagens()
+    } else {
+      this.postagemService.getByTituloPostagem(this.tituloPost).subscribe((resp: Postagem[]) => {
+        this.listaPostagens = resp
+      })
+    }
+  }
+
+  findByDescricaoTema() {
+    if(this.descricaoTema == '') {
+      this.getAllPostagens()
+    } else {
+      this.temaService.getByDescricaoTema(this.descricaoTema).subscribe((resp: Tema[]) => {
+        this.listaTemas = resp
+      })
+    }
   }
 
   publicar() {
     this.tema.id = this.idDoTema
     this.postagem.tema = this.tema
-    
+
     this.user.id = this.idDoUsuario
     this.user.nome = environment.nome
     this.postagem.usuario = this.user
