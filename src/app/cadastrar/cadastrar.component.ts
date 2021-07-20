@@ -16,6 +16,7 @@ export class CadastrarComponent implements OnInit {
   usuario: Usuario = new Usuario
   confirmarSenha: string
   tipoUsuario: string
+  photo: string
 
   constructor(
     private authService: AuthService,
@@ -39,6 +40,9 @@ export class CadastrarComponent implements OnInit {
 
   cadastrar() {
     this.usuario.tipo = this.tipoUsuario
+    if(this.usuario.foto == null) {
+      this.usuario.foto = 'https://i.imgur.com/yBbIPoj.png'
+    }
 
     if(this.usuario.senha != this.confirmarSenha) {
       this.alertas.showAlertDanger('As senhas estão diferentes. Por favor, verifique.')

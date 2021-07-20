@@ -22,3 +22,15 @@ ul.social-network li{
 .fa-linkedin-square:hover {
     color: #0e76a8;
 }
+
+.point {
+    cursor: pointer;
+}
+
+.bg-d-grey {
+    background-color: #263238;
+}
+
+.bg-w-grey {
+    background-color: #455A64;
+}
